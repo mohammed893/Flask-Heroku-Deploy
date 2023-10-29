@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return "Welcome Dude that's a dump API"
-@app.route("/predict" , methods = ["GET"])
+# @app.route("/predict" , methods = ["GET"])
 # def predict():
 #     age = request.args.get('age')
 #     sex = request.args.get('sex')
