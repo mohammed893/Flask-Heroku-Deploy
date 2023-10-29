@@ -4,7 +4,7 @@ import numpy as np
 
 
 app = Flask(__name__)
-model = pickle.load(open('C:/Users/aa/Desktop/Flask/random_forest_model_1_pk1' , 'rb'))
+model = pickle.load(open('Flask-Heroku-Deploy/random_forest_model_1_pk1' , 'rb'))
 
 @app.route('/')
 def home():
