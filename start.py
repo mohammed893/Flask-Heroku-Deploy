@@ -32,11 +32,9 @@ def predict():
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
                                           slope , ca , thal ]])
-    output = [makeprediction.tolist()]
-    
+    output = makeprediction.tolist()
 
-    return jsonify({"prediction" : list(output) , 
-                    "Probability" : list(probability)})
+    return jsonify({"prediction" : list(output)})
 
     
 
