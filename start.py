@@ -40,7 +40,7 @@ def predict():
     output = makeprediction.tolist()
     output2 = makeprediction_p.tolist()
 
-    return jsonify({"prediction" : list(output) , "Proba" : output2})
+    return jsonify({"prediction" : list(output)})
 
     
 
