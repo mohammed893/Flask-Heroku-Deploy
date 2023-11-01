@@ -32,8 +32,8 @@ def predict():
 
     return jsonify({"prediction" : list(output)})
     
- @app.route("/predictprob" , methods = ["GET"])
-def predict():
+@app.route("/predictprob" , methods = ["GET"])
+def predict_prob():
     age = request.args.get('age')
     sex = request.args.get('sex')
     cp = request.args.get('cp')
