@@ -24,21 +24,19 @@ def predict():
     slope = request.args.get('slope')
     ca = request.args.get('ca')
     thal = request.args.get('thal')
-    makeprediction = model.predict([[age , sex , cp , trestbps ,
+    data = [[age , sex , cp , trestbps ,
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
-                                          slope , ca , thal ]])
+                                          slope , ca , thal ]]
+    makeprediction = model.predict(data)
     
-    makeprediction_p = model.predict_proba([[age , sex , cp , trestbps ,
-                                      chol , fbs , restecg ,
-                                        thalach , exang , oldpeak ,
-                                          slope , ca , thal ]])
-    # probability = model.predict_proba([[age , sex , cp , trestbps ,
+    # makeprediction_p = model.predict_proba([[age , sex , cp , trestbps ,
     #                                   chol , fbs , restecg ,
     #                                     thalach , exang , oldpeak ,
     #                                       slope , ca , thal ]])
+    
     output = makeprediction.tolist()
-    output2 = makeprediction_p.tolist()
+    
 
     return jsonify({"prediction" : list(output)})
 
