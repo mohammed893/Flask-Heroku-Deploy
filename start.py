@@ -28,6 +28,7 @@ def predict():
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
                                           slope , ca , thal ]])
+    
     makeprediction_p = model.predict_proba([[age , sex , cp , trestbps ,
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
@@ -39,7 +40,7 @@ def predict():
     output = makeprediction.tolist()
     output2 = makeprediction_p.tolist()
 
-    return jsonify({"prediction" : list(output) , "Proba" : list(output2)})
+    return jsonify({"prediction" : list(output) , "Proba" : output2})
 
     
 
