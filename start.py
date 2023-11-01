@@ -24,13 +24,36 @@ def predict():
     slope = request.args.get('slope')
     ca = request.args.get('ca')
     thal = request.args.get('thal')
-    makeprediction = model.predict_proba([[age , sex , cp , trestbps ,
+    makeprediction = model.predict([[age , sex , cp , trestbps ,
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
                                           slope , ca , thal ]])
     output = makeprediction.tolist()
 
     return jsonify({"prediction" : list(output)})
+    
+ @app.route("/predictprob" , methods = ["GET"])
+def predict():
+    age = request.args.get('age')
+    sex = request.args.get('sex')
+    cp = request.args.get('cp')
+    trestbps = request.args.get('trestbps')
+    chol = request.args.get('chol')
+    fbs = request.args.get('fbs')
+    restecg = request.args.get('restecg')
+    thalach = request.args.get('thalach')
+    exang = request.args.get('exang')
+    oldpeak = request.args.get('oldpeak')
+    slope = request.args.get('slope')
+    ca = request.args.get('ca')
+    thal = request.args.get('thal')
+    makeprediction = model.predict_proba([[age , sex , cp , trestbps ,
+                                      chol , fbs , restecg ,
+                                        thalach , exang , oldpeak ,
+                                          slope , ca , thal ]])
+    output = makeprediction.tolist()
+
+    return jsonify({"prediction_probabilities" : list(output)})
 
     
 
