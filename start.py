@@ -4,7 +4,7 @@ import numpy as np
 
 
 app = Flask(__name__)
-model = pickle.load(open('C:/Users/aa/Desktop/Flask/random_forest_model_1_pk1' , 'rb'))
+model = pickle.load(open('random_forest_model_1_pk1' , 'rb'))
 
 @app.route('/')
 def home():
@@ -24,19 +24,11 @@ def predict():
     slope = request.args.get('slope')
     ca = request.args.get('ca')
     thal = request.args.get('thal')
-    data = [[age , sex , cp , trestbps ,
+    makeprediction = model.predict([[age , sex , cp , trestbps ,
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
-                                          slope , ca , thal ]]
-    makeprediction = model.predict(data)
-    
-    # makeprediction_p = model.predict_proba([[age , sex , cp , trestbps ,
-    #                                   chol , fbs , restecg ,
-    #                                     thalach , exang , oldpeak ,
-    #                                       slope , ca , thal ]])
-    
+                                          slope , ca , thal ]])
     output = makeprediction.tolist()
-    
 
     return jsonify({"prediction" : list(output)})
 
