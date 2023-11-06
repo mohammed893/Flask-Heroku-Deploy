@@ -4,7 +4,7 @@ import numpy as np
 
 
 app = Flask(__name__)
-model = pickle.load(open('random_forest_model_1_pk1' , 'rb'))
+model = pickle.load(open('The_Medical_Model' , 'rb'))
 
 
 @app.route('/')
