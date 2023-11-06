@@ -6,6 +6,7 @@ import numpy as np
 app = Flask(__name__)
 model = pickle.load(open('random_forest_model_1_pk1' , 'rb'))
 
+
 @app.route('/')
 def home():
     return "Welcome Dude that's a dump API"
@@ -22,15 +23,30 @@ def predict():
     exang = request.args.get('exang')
     oldpeak = request.args.get('oldpeak')
     slope = request.args.get('slope')
+    
     ca = request.args.get('ca')
     thal = request.args.get('thal')
     makeprediction = model.predict([[age , sex , cp , trestbps ,
                                       chol , fbs , restecg ,
                                         thalach , exang , oldpeak ,
                                           slope , ca , thal ]])
+    makeprediction_prob = model.predict_proba([[age , sex , cp , trestbps ,
+                                      chol , fbs , restecg ,
+                                        thalach , exang , oldpeak ,
+                                          slope , ca , thal ]])
+    
     output = makeprediction.tolist()
+    output_2 = makeprediction_prob.tolist()
 
-    return jsonify({"prediction" : list(output)})
+    if output[0] == 1 :
+        output = "positive"
+    else :
+        output = "negative"
+
+    return jsonify({"prediction" : output , 
+                    "No_probability" : output_2[0][0], 
+                    "Yes_probability" : output_2[0][1]
+                    })
 
     
 
