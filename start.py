@@ -44,8 +44,8 @@ def predict():
         output = "negative"
 
     return jsonify({"prediction" : output , 
-                    "No_probability" : output_2[0][0], 
-                    "Yes_probability" : output_2[0][1]
+                    #"No_probability" : output_2[0][0], 
+                    #"Yes_probability" : output_2[0][1]
                     })
 
     
