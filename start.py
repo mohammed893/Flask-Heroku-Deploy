@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request ,jsonify
 import pickle 
 import numpy as np
 
@@ -46,6 +46,18 @@ def predict():
     return jsonify({"Your result is " : output , 
                     #"No_probability" : output_2[0][0], 
                     #"Yes_probability" : output_2[0][1]
+                    })
+@app.route("/submit", methods = ['GET', 'POST'])
+def get_output():
+	if request.method == 'POST':
+		img = request.files['my_image']
+
+		img_path = "static/" + img.filename	
+		img.save(img_path)
+
+		p = 1
+
+	return jsonify({"Your result is " : p , 
                     })
 
     
