@@ -57,7 +57,7 @@ def get_output():
 
 		p = 1
 
-	return jsonify({"Your result is " : p , 
+	return jsonify({"Your result is " : img_path  , 
                     })
 
     
