@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request ,jsonify
 import pickle 
 import numpy as np
+import tensorflow as tf
+import tensorflow_hub as hub
+import pandas as pd
+import os
+
+
+
 
 
 app = Flask(__name__)
