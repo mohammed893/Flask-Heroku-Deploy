@@ -9,36 +9,55 @@ import numpy as np
 app = Flask(__name__)
 
 #Define image size
+
+
 IMG_SIZE = 224
+
+
 BATCH_SIZE = 32
-def process_img (image_path , img_size = IMG_SIZE) :
-  """
-  TAKE PATH TURN AND INTO TENSOR
 
-  """
 
-  #read in an image file
-  image = tf.io.read_file(image_path)
-  #Turn jpg into numerical tensor with 3 colour channels Red Green Blue
-  image = tf.image.decode_jpeg(image , channels = 3)
-  #Convert the color channel value from 0 - 255 to 0 - 1 values  (NORMALIZATION)
-  image = tf.image.convert_image_dtype(image , tf.float32)
-  #resize image to our desired value (224 , 224)
-  image = tf.image.resize(image , size = [img_size , img_size])
-  return image
-def create_data_batches(x , y = None , batch_size = BATCH_SIZE , valid_data = False , 
-                        test_data = False):
-  """
-  Create Batches of data out of image (X) and label (y) pairs
-  Shuffles the data -- TO MAKE SURE ORDER does not affect out model
-  DON'T shuffle if it's a validation data
-  """
-  #if the data is a test data set , we don't have labels
-  if test_data:
-    print("Creating test data batches")
-    data = tf.data.Dataset.from_tensor_slices((tf.constant(x))) #only filepath no labels
-    data_batch = data.map(process_img).batch(batch_size)
-    return data_batch
+
+# def process_img (image_path , img_size = IMG_SIZE) :
+#   """
+#   TAKE PATH TURN AND INTO TENSOR
+
+#   """
+
+#   #read in an image file
+#   image = tf.io.read_file(image_path)
+#   #Turn jpg into numerical tensor with 3 colour channels Red Green Blue
+#   image = tf.image.decode_jpeg(image , channels = 3)
+#   #Convert the color channel value from 0 - 255 to 0 - 1 values  (NORMALIZATION)
+#   image = tf.image.convert_image_dtype(image , tf.float32)
+#   #resize image to our desired value (224 , 224)
+#   image = tf.image.resize(image , size = [img_size , img_size])
+#   return image
+
+
+
+
+
+
+# def create_data_batches(x , y = None , batch_size = BATCH_SIZE , valid_data = False , 
+#                         test_data = False):
+#   """
+#   Create Batches of data out of image (X) and label (y) pairs
+#   Shuffles the data -- TO MAKE SURE ORDER does not affect out model
+#   DON'T shuffle if it's a validation data
+#   """
+#   #if the data is a test data set , we don't have labels
+#   if test_data:
+#     print("Creating test data batches")
+#     data = tf.data.Dataset.from_tensor_slices((tf.constant(x))) #only filepath no labels
+#     data_batch = data.map(process_img).batch(batch_size)
+#     return data_batch
+
+
+
+
+
+				
 #If the data is a valid dataset , we don't need to shuffle it
 #   elif valid_data:
 #     print("Creating Valid data batches")
@@ -47,7 +66,7 @@ def create_data_batches(x , y = None , batch_size = BATCH_SIZE , valid_data = Fa
 #     data_batch = data.map(get_img_label).batch(batch_size)
 #     return data_batch
 #   #Train data , we have labels , we have to shuffle
-  else:
+  # else:
     # print("Creating Train data batches")
     # #Turn filepaths and labels into Tensors
     # data = tf.data.Dataset.from_tensor_slices((tf.constant(x) , tf.constant(y)))
@@ -57,8 +76,8 @@ def create_data_batches(x , y = None , batch_size = BATCH_SIZE , valid_data = Fa
     # data = data.map(get_img_label)
 
     #Turn the Training data into batches
-    data_batch = data.batch(BATCH_SIZE)
-    return data_batch
+    # data_batch = data.batch(BATCH_SIZE)
+    # return data_batch
 def load_model(model_path):
   """
 load a saved model from a path
@@ -92,7 +111,7 @@ def get_output():
 		img = request.files['my_image']
 		img_path = "static/" + img.filename	
 		img.save(img_path) 
-		p = ready(img_path)
+		p = 1
 	return p
 
 
