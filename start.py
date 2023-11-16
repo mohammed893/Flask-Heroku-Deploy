@@ -49,14 +49,6 @@ def predict():
                     })
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
-	if request.method == 'POST':
-		img = request.files['my_image']
-
-		img_path = "static/" + img.filename	
-		img.save(img_path)
-
-		p = 1
-
 	return render_template("index.html", prediction = p, img_path = img_path)
 
 if __name__ == "__main__":
